@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactNode } from "react";
 import { useInView } from "@/hooks/use-in-view";
 import { cn } from "@/lib/utils";

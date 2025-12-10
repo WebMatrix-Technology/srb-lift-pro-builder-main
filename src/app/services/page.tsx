@@ -1,7 +1,9 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import installationImg from "@/assets/service-installation.jpg";
 import modernizationImg from "@/assets/service-modernization.jpg";
 import maintenanceImg from "@/assets/service-maintenance.jpg";
@@ -9,7 +11,7 @@ import repairImg from "@/assets/service-repair.jpg";
 import consultancyImg from "@/assets/service-consultancy.jpg";
 import Reveal from "@/components/Reveal";
 
-const Services = () => {
+export default function Services() {
   const services = [
     {
       title: "Lift Installation",
@@ -99,13 +101,19 @@ const Services = () => {
 
   return (
     <div className="flex min-h-screen flex-col">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary to-primary-hover py-16 text-white">
-        <div className="container mx-auto px-4">
+      {/* Enhanced Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary-hover to-primary py-24 md:py-32">
+        <div className="absolute inset-0 bg-grid-pattern opacity-10" />
+        <div className="container relative mx-auto px-4">
           <Reveal className="max-w-3xl" variant="fade-up">
-            <h1 className="mb-6 text-4xl font-bold md:text-5xl">Our Services</h1>
-            <p className="text-lg text-white/90 md:text-xl">
-              Complete Lift Solutions: Supply • Installation • Commissioning • Servicing • AMC • Modification
+            <div className="mb-4 inline-block rounded-full bg-white/20 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
+              Our Services
+            </div>
+            <h1 className="mb-6 text-5xl font-bold text-white md:text-6xl lg:text-7xl">
+              Complete <span className="bg-gradient-to-r from-yellow-200 to-white bg-clip-text text-transparent">Lift Solutions</span>
+            </h1>
+            <p className="text-xl text-white/90 md:text-2xl">
+              Supply • Installation • Commissioning • Servicing • AMC • Modification
             </p>
           </Reveal>
         </div>
@@ -117,33 +125,34 @@ const Services = () => {
           <div className="space-y-16">
             {services.map((service, index) => (
               <Reveal key={index} variant="fade-up" delayMs={index * 120}>
-                <Card className="overflow-hidden">
+                <Card className="group overflow-hidden border-2 transition-all duration-300 hover:border-primary/50 hover:shadow-2xl">
                   <div className="grid md:grid-cols-2">
-                    <div className={`aspect-square md:aspect-auto ${index % 2 === 1 ? "md:order-2" : ""}`}>
+                    <div className={`relative aspect-square md:aspect-auto ${index % 2 === 1 ? "md:order-2" : ""} overflow-hidden`}>
                       <img
-                        src={service.image}
+                        src={typeof service.image === 'string' ? service.image : service.image.src}
                         alt={service.title}
-                        className="h-full w-full object-cover"
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                     </div>
-                    <CardContent className="flex flex-col justify-center p-6 md:p-10">
-                      <h2 className="mb-4 text-2xl font-bold md:text-3xl">{service.title}</h2>
-                      <p className="mb-6 text-muted-foreground">{service.description}</p>
+                    <CardContent className="flex flex-col justify-center p-8 md:p-12">
+                      <h2 className="mb-4 text-3xl font-bold md:text-4xl">{service.title}</h2>
+                      <p className="mb-6 text-lg leading-relaxed text-muted-foreground">{service.description}</p>
                       
-                      <div className="mb-6 space-y-2">
-                        <h3 className="font-semibold">Key Benefits:</h3>
-                        <ul className="space-y-2">
+                      <div className="mb-8 space-y-3">
+                        <h3 className="text-lg font-semibold">Key Benefits:</h3>
+                        <ul className="space-y-3">
                           {service.benefits.map((benefit, idx) => (
-                            <li key={idx} className="flex items-start gap-2">
-                              <CheckCircle2 className="h-5 w-5 shrink-0 text-primary" />
-                              <span className="text-sm text-muted-foreground">{benefit}</span>
+                            <li key={idx} className="flex items-start gap-3">
+                              <CheckCircle2 className="mt-0.5 h-6 w-6 shrink-0 text-primary" />
+                              <span className="text-muted-foreground">{benefit}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
 
-                      <Button asChild>
-                        <Link to="/contact">
+                      <Button className="w-full bg-gradient-to-r from-primary to-primary-hover hover:shadow-lg transition-all duration-300" asChild>
+                        <Link href="/contact">
                           Request a Quote
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
@@ -158,18 +167,25 @@ const Services = () => {
       </section>
 
       {/* Product Range */}
-      <section className="bg-muted/30 py-16 md:py-24">
+      <section className="section-padding bg-muted/50">
         <div className="container mx-auto px-4">
-          <div className="mb-10 text-center">
-            <h2 className="mb-3 text-3xl font-bold md:text-4xl">Our Product Range</h2>
-            <p className="text-muted-foreground">Elevators for every application</p>
-          </div>
+          <Reveal className="mb-12 text-center" variant="fade-up">
+            <div className="mb-4 inline-block rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
+              Product Range
+            </div>
+            <h2 className="mb-4 text-4xl font-bold md:text-5xl">
+              Elevators for <span className="gradient-text">Every Application</span>
+            </h2>
+            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+              Comprehensive range of lift solutions tailored to your specific needs
+            </p>
+          </Reveal>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <Reveal variant="fade-up">
-              <Card>
+              <Card className="group border-2 transition-all duration-300 hover:border-primary/50 hover:shadow-xl">
                 <CardContent className="p-6">
-                <h3 className="mb-2 text-xl font-semibold">Passenger Lifts</h3>
-                <p className="text-sm text-muted-foreground">Microprocessor controlled, smooth and comfortable travel with automatic doors.</p>
+                <h3 className="mb-2 text-xl font-bold">Passenger Lifts</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">Microprocessor controlled, smooth and comfortable travel with automatic doors.</p>
                 </CardContent>
               </Card>
             </Reveal>
@@ -248,25 +264,91 @@ const Services = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-muted/30 py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="mb-4 text-3xl font-bold">Need a Custom Solution?</h2>
-          <p className="mb-8 text-lg text-muted-foreground">
-            Contact us to discuss your specific requirements
-          </p>
-          <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <Button size="lg" asChild>
-              <Link to="/contact">Contact Us</Link>
-            </Button>
-            <Button size="lg" variant="outline" asChild>
-              <Link to="/amc">Explore AMC Plans</Link>
-            </Button>
+      {/* Related Pages */}
+      <section className="section-padding bg-muted/50">
+        <div className="container mx-auto px-4">
+          <Reveal className="mb-12 text-center" variant="fade-up">
+            <h2 className="mb-4 text-3xl font-bold md:text-4xl">Explore More</h2>
+            <p className="text-lg text-muted-foreground">Discover our complete range of products and technical solutions</p>
+          </Reveal>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+            <Reveal variant="fade-up">
+              <Card className="group border-2 transition-all duration-300 hover:border-primary/50 hover:shadow-xl">
+                <CardContent className="p-6 text-center">
+                  <h3 className="mb-2 font-bold">Product Catalog</h3>
+                  <p className="mb-4 text-sm text-muted-foreground">View detailed specifications</p>
+                  <Button variant="outline" className="w-full" asChild>
+                    <Link href="/products">View Products</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            </Reveal>
+            <Reveal variant="fade-up" delayMs={100}>
+              <Card className="group border-2 transition-all duration-300 hover:border-primary/50 hover:shadow-xl">
+                <CardContent className="p-6 text-center">
+                  <h3 className="mb-2 font-bold">Product Types</h3>
+                  <p className="mb-4 text-sm text-muted-foreground">Explore different lift types</p>
+                  <Button variant="outline" className="w-full" asChild>
+                    <Link href="/product-types">View Types</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            </Reveal>
+            <Reveal variant="fade-up" delayMs={200}>
+              <Card className="group border-2 transition-all duration-300 hover:border-primary/50 hover:shadow-xl">
+                <CardContent className="p-6 text-center">
+                  <h3 className="mb-2 font-bold">Technical Specs</h3>
+                  <p className="mb-4 text-sm text-muted-foreground">MRL, controllers & safety</p>
+                  <Button variant="outline" className="w-full" asChild>
+                    <Link href="/technical">View Technical</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            </Reveal>
+            <Reveal variant="fade-up" delayMs={300}>
+              <Card className="group border-2 transition-all duration-300 hover:border-primary/50 hover:shadow-xl">
+                <CardContent className="p-6 text-center">
+                  <h3 className="mb-2 font-bold">Landing Doors</h3>
+                  <p className="mb-4 text-sm text-muted-foreground">Door options & designs</p>
+                  <Button variant="outline" className="w-full" asChild>
+                    <Link href="/landing-doors">View Doors</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            </Reveal>
+            <Reveal variant="fade-up" delayMs={400}>
+              <Card className="group border-2 transition-all duration-300 hover:border-primary/50 hover:shadow-xl">
+                <CardContent className="p-6 text-center">
+                  <h3 className="mb-2 font-bold">Specifications</h3>
+                  <p className="mb-4 text-sm text-muted-foreground">Detailed technical specs</p>
+                  <Button variant="outline" className="w-full" asChild>
+                    <Link href="/specifications">View Specs</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            </Reveal>
           </div>
+        </div>
+      </section>
+
+      {/* Enhanced CTA Section */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary-hover to-primary py-20">
+        <div className="absolute inset-0 bg-grid-pattern opacity-10" />
+        <div className="container relative mx-auto px-4 text-center">
+          <Reveal variant="fade-up">
+            <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl">Need a Custom Solution?</h2>
+            <p className="mb-8 text-xl text-white/90">
+              Contact us to discuss your specific requirements
+            </p>
+            <div className="flex flex-col justify-center gap-4 sm:flex-row">
+              <Button size="lg" className="bg-white text-primary hover:bg-white/90 hover:shadow-xl transition-all duration-300 h-14 px-8 text-lg font-semibold" asChild>
+                <Link href="/contact">Contact Us</Link>
+              </Button>
+            </div>
+          </Reveal>
         </div>
       </section>
     </div>
   );
-};
+}
 
-export default Services;

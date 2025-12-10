@@ -20,6 +20,9 @@ export const defaultSettings: SiteSettings = {
 };
 
 export function loadSettings(): SiteSettings {
+  if (typeof window === "undefined") {
+    return defaultSettings;
+  }
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return defaultSettings;
@@ -35,6 +38,9 @@ export function loadSettings(): SiteSettings {
 }
 
 export function saveSettings(settings: SiteSettings) {
+  if (typeof window === "undefined") {
+    return;
+  }
   localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
 }
 

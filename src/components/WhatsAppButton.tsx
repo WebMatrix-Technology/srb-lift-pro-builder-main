@@ -1,9 +1,16 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { loadSettings } from "@/lib/settings";
+import { loadSettings, defaultSettings, SiteSettings } from "@/lib/settings";
 
 const WhatsAppButton = () => {
-  const settings = loadSettings();
+  const [settings, setSettings] = useState<SiteSettings>(defaultSettings);
+
+  useEffect(() => {
+    setSettings(loadSettings());
+  }, []);
   const handleWhatsAppClick = () => {
     const phoneNumber = settings.whatsapp;
     const message = "Hi, I'm interested in your elevator services.";
