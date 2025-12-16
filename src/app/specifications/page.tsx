@@ -8,38 +8,18 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
+import {
+  defaultPassengerSpecs,
+  defaultHospitalSpecs,
+  defaultFreightSpecs,
+  defaultHydraulicSpecs,
+} from "@/lib/data";
+
 export default function Specifications() {
-  const passengerSpecs = [
-    { person: 4, weight: 272, width: "900", depth: "1000", height: "2100", pit: "1400", oh: "3800" },
-    { person: 6, weight: 408, width: "1100", depth: "1000", height: "2100", pit: "1400", oh: "3800" },
-    { person: 8, weight: 544, width: "1100", depth: "1400", height: "2200", pit: "1500", oh: "4000" },
-    { person: 10, weight: 680, width: "1350", depth: "1400", height: "2200", pit: "1500", oh: "4000" },
-    { person: 13, weight: 884, width: "1600", depth: "1400", height: "2300", pit: "1600", oh: "4200" },
-    { person: 16, weight: 1088, width: "1600", depth: "1500", height: "2300", pit: "1600", oh: "4200" },
-    { person: 20, weight: 1360, width: "1800", depth: "1500", height: "2400", pit: "1700", oh: "4500" },
-  ];
-
-  const hospitalSpecs = [
-    { person: 15, capacity: 1020, shaftW: "2100", shaftD: "2400", carW: "1600", carD: "2400", entrance: "1100" },
-    { person: 20, capacity: 1360, shaftW: "2400", shaftD: "2600", carW: "2000", carD: "2600", entrance: "1100" },
-    { person: 26, capacity: 1766, shaftW: "2400", shaftD: "3000", carW: "2000", carD: "3000", entrance: "1100" },
-  ];
-
-  const freightSpecs = [
-    { load: 500, width: "1500", depth: "1500", entDepth: "1500", entWidth: "1200", mrDepth: "2000", mrHeight: "2200", speed: "0.7 m/s" },
-    { load: 1000, width: "2000", depth: "2000", entDepth: "2000", entWidth: "1500", mrDepth: "2500", mrHeight: "2400", speed: "0.7 m/s" },
-    { load: 2000, width: "2500", depth: "2500", entDepth: "2500", entWidth: "2000", mrDepth: "3000", mrHeight: "2600", speed: "0.7 m/s" },
-    { load: 3000, width: "3000", depth: "3000", entDepth: "3000", entWidth: "2500", mrDepth: "3500", mrHeight: "2800", speed: "0.7 m/s" },
-    { load: 4000, width: "3500", depth: "3500", entDepth: "3500", entWidth: "3000", mrDepth: "4000", mrHeight: "3000", speed: "0.7 m/s" },
-  ];
-
-  const hydraulicSpecs = [
-    { person: 3, capacity: 204, carW: "1100", carF: "1000", shaftW: "1500", shaftD: "1400" },
-    { person: 5, capacity: 340, carW: "1100", carF: "1400", shaftW: "1500", shaftD: "1800" },
-    { person: 8, capacity: 544, carW: "1350", carF: "1400", shaftW: "1800", shaftD: "1800" },
-    { person: 12, capacity: 816, carW: "1600", carF: "1400", shaftW: "2000", shaftD: "1800" },
-    { person: 20, capacity: 1360, carW: "1600", carF: "1500", shaftW: "2000", shaftD: "1900" },
-  ];
+  const passengerSpecs = defaultPassengerSpecs;
+  const hospitalSpecs = defaultHospitalSpecs;
+  const freightSpecs = defaultFreightSpecs;
+  const hydraulicSpecs = defaultHydraulicSpecs;
 
   return (
     <div className="flex min-h-screen flex-col">

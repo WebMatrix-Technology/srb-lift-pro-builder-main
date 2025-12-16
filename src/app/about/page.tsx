@@ -1,46 +1,17 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
-import { Shield, Target, Eye, Award, TrendingUp, Users, CheckCircle2, Sparkles } from "lucide-react";
+import { TrendingUp, Users, CheckCircle2, Sparkles, Target, Eye, Award } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import CountUp from "@/components/CountUp";
+import { defaultValues, defaultExpertise, defaultStats, defaultTeamMembers } from "@/lib/data";
+import Image from "next/image";
 
 export default function About() {
-  const values = [
-    {
-      icon: Shield,
-      title: "Safety",
-      description: "We prioritize safety above all else, ensuring every installation meets the highest industry standards and certifications.",
-      gradient: "from-blue-500 to-cyan-500",
-    },
-    {
-      icon: Award,
-      title: "Excellence",
-      description: "Committed to delivering exceptional quality in every project we undertake with precision and care.",
-      gradient: "from-purple-500 to-pink-500",
-    },
-    {
-      icon: Target,
-      title: "Reliability",
-      description: "Our clients trust us for consistent, dependable service and support throughout the project lifecycle.",
-      gradient: "from-green-500 to-emerald-500",
-    },
-    {
-      icon: Eye,
-      title: "Innovation",
-      description: "Staying ahead with the latest elevator technology and best practices in the industry.",
-      gradient: "from-orange-500 to-red-500",
-    },
-  ];
-
-  const expertise = [
-    "Supply, Installation and Commissioning",
-    "Modernisation of existing elevator systems",
-    "Preventive maintenance, Repairs and AMC services",
-    "Emergency breakdown support",
-    "Technical consultancy and project planning",
-    "Safety inspections and compliance certification",
-  ];
+  const values = defaultValues;
+  const expertise = defaultExpertise;
+  const stats = defaultStats;
+  const teamMembers = defaultTeamMembers;
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -67,6 +38,30 @@ export default function About() {
         <div className="container mx-auto px-4">
           <div className="grid gap-12 lg:grid-cols-2">
             <Reveal variant="fade-right">
+              <div className="mb-8 flex items-center gap-4">
+                <div className="relative h-20 w-auto transition-all duration-300 hover:scale-105 hover:brightness-110">
+                  <div className="absolute -inset-4 rounded-xl bg-gradient-to-br from-primary/10 via-primary-hover/10 to-primary/5 opacity-50 blur-xl" />
+                  <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-primary/5 to-primary-hover/5 opacity-0 hover:opacity-100 transition-opacity duration-300" />
+                  <Image 
+                    src="/logo.png?v=1" 
+                    alt="SRB ELEVATOR"
+                    width={80}
+                    height={80}
+                    className="h-20 w-auto object-contain relative z-10 drop-shadow-2xl"
+                    unoptimized
+                  />
+                </div>
+                <div className="relative h-14 w-auto transition-all duration-300 hover:scale-105">
+                  <Image 
+                    src="/logo_title.png?v=1" 
+                    alt="SRB ELEVATOR"
+                    width={250}
+                    height={56}
+                    className="h-14 w-auto object-contain relative z-10 drop-shadow-lg"
+                    unoptimized
+                  />
+                </div>
+              </div>
               <div className="mb-4 inline-block rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
                 Who We Are
               </div>
@@ -202,55 +197,80 @@ export default function About() {
         </div>
       </section>
 
+      {/* Meet Our Team */}
+      {/* <section className="section-padding bg-muted/50">
+        <div className="container mx-auto px-4">
+          <Reveal className="mb-12 text-center" variant="fade-up">
+            <div className="mb-4 inline-block rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
+              Our Team
+            </div>
+            <h2 className="mb-4 text-4xl font-bold md:text-5xl">
+              Meet Our <span className="gradient-text">Expert Team</span>
+            </h2>
+            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+              The dedicated professionals behind SRB ELEVATOR's success
+            </p>
+          </Reveal>
+
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {teamMembers.map((member, index) => (
+              <Reveal key={index} variant="fade-up" delayMs={index * 100}>
+                <div className="group text-center">
+                  <div className={`mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br ${member.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:shadow-xl`}>
+                    {member.image ? (
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        width={96}
+                        height={96}
+                        className="h-24 w-24 rounded-full object-cover"
+                      />
+                    ) : (
+                      <span className="text-3xl font-bold text-white">
+                        {member.name.split(' ').map(n => n[0]).join('')}
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="mb-1 text-xl font-bold">{member.name}</h3>
+                  <p className="text-sm font-medium text-primary">{member.position}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section> */}
+
       {/* Enhanced Stats */}
       <section className="relative overflow-hidden bg-gradient-to-r from-primary via-primary-hover to-primary py-20">
         <div className="absolute inset-0 bg-grid-pattern opacity-10" />
         <div className="container relative mx-auto px-4">
           <div className="grid gap-8 text-center md:grid-cols-4">
-            <Reveal variant="fade-up">
-              <div className="group">
-                <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
-                  <TrendingUp className="h-8 w-8 text-white" />
-                </div>
-                <div className="mb-2 text-5xl font-bold text-white md:text-6xl">
-                  <CountUp end={15} suffix="+" />
-                </div>
-                <div className="text-lg text-white/90">Years Experience</div>
-              </div>
-            </Reveal>
-            <Reveal variant="fade-up" delayMs={100}>
-              <div className="group">
-                <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
-                  <Award className="h-8 w-8 text-white" />
-                </div>
-                <div className="mb-2 text-5xl font-bold text-white md:text-6xl">
-                  <CountUp end={500} suffix="+" />
-                </div>
-                <div className="text-lg text-white/90">Projects Completed</div>
-              </div>
-            </Reveal>
-            <Reveal variant="fade-up" delayMs={200}>
-              <div className="group">
-                <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
-                  <Users className="h-8 w-8 text-white" />
-                </div>
-                <div className="mb-2 text-5xl font-bold text-white md:text-6xl">
-                  <CountUp end={300} suffix="+" />
-                </div>
-                <div className="text-lg text-white/90">Active AMC Clients</div>
-              </div>
-            </Reveal>
-            <Reveal variant="fade-up" delayMs={300}>
-              <div className="group">
-                <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
-                  <Eye className="h-8 w-8 text-white" />
-                </div>
-                <div className="mb-2 text-5xl font-bold text-white md:text-6xl">
-                  <CountUp end={24} />/<CountUp end={7} />
-                </div>
-                <div className="text-lg text-white/90">Support Available</div>
-              </div>
-            </Reveal>
+            {stats.map((stat, index) => {
+              const Icon = stat.icon;
+              // Handle special case for "/7" suffix (Support Available)
+              const isSpecialSuffix = stat.suffix === "/7";
+              const suffixValue = isSpecialSuffix ? parseInt(stat.suffix.slice(1)) : undefined;
+              
+              return (
+                <Reveal key={index} variant="fade-up" delayMs={index * 100}>
+                  <div className="group">
+                    <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
+                      <Icon className="h-8 w-8 text-white" />
+                    </div>
+                    <div className="mb-2 text-5xl font-bold text-white md:text-6xl">
+                      {isSpecialSuffix ? (
+                        <span className="inline-flex items-center">
+                          <CountUp end={stat.value} />/<CountUp end={suffixValue!} />
+                        </span>
+                      ) : (
+                        <CountUp end={stat.value} suffix={stat.suffix} />
+                      )}
+                    </div>
+                    <div className="text-lg text-white/90">{stat.label}</div>
+                  </div>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>

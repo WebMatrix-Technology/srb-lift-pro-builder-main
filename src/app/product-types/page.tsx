@@ -2,120 +2,14 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Package, Car, Droplets, Sparkles, Building2, Stethoscope, CheckCircle2, ArrowLeft, Factory } from "lucide-react";
+import { ArrowRight, CheckCircle2, ArrowLeft, Package, Building2 } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import heroElevatorImg from "@/assets/hero-elevator.jpg";
+import { defaultProductTypes } from "@/lib/data";
 
 export default function ProductTypes() {
-  const productTypes = [
-    {
-      icon: Package,
-      title: "Dumbwaiter Lifts",
-      slug: "dumbwaiter-service-lifts",
-      description: "Perfect for hotels, restaurants, banks, shopping centers, libraries, laboratories, and laundries. Used for delivering food, drinks, tableware, dairy products, documents, medicine, books, and instruments.",
-      features: [
-        "Stainless steel construction for heat and moisture resistance",
-        "Custom design options",
-        "Compact and space-efficient",
-        "Ideal for multi-level facilities",
-      ],
-      applications: ["Hotels", "Restaurants", "Hospitals", "Libraries", "Shopping Centers"],
-      gradient: "from-blue-500 via-cyan-500 to-blue-600",
-      bgGradient: "from-blue-50 to-cyan-50",
-    },
-    {
-      icon: Car,
-      title: "Car Lifts",
-      slug: "car-lifts",
-      description: "Designed for moving cars in condominiums, showrooms, garages, and homes. Compact, easy-to-use basement/rooftop parking solutions for crowded and high-density spaces.",
-      features: [
-        "Cost-effective space-saving solution",
-        "Design flexibility",
-        "Suitable for high-density areas",
-        "Easy operation and maintenance",
-      ],
-      applications: ["Residential Buildings", "Car Showrooms", "Parking Garages", "Private Homes"],
-      gradient: "from-purple-500 via-pink-500 to-purple-600",
-      bgGradient: "from-purple-50 to-pink-50",
-    },
-    {
-      icon: Droplets,
-      title: "Hydraulic Lifts",
-      slug: "hydraulic-lifts",
-      description: "Operate using oil pressure to move a piston upwards and gravitational force for lowering. Ultra-smooth and quiet ride quality with no pit or headroom requirements.",
-      features: [
-        "Ultra-smooth and quiet operation",
-        "No pit or headroom required",
-        "Single-phase power operation",
-        "Reliable hydraulic system",
-      ],
-      applications: ["Low-rise Buildings", "Residential Complexes", "Small Commercial Spaces"],
-      gradient: "from-green-500 via-emerald-500 to-green-600",
-      bgGradient: "from-green-50 to-emerald-50",
-    },
-    {
-      icon: Sparkles,
-      title: "Capsule Lifts",
-      slug: "capsule-lifts",
-      description: "Architectural highlights for prestigious buildings, offering high visibility and aesthetically attractive interiors. Available in 3-side glass, 5-side glass, and round shapes.",
-      features: [
-        "High visibility panoramic design",
-        "Multiple shape options",
-        "Aesthetically attractive",
-        "Perfect for architectural statements",
-      ],
-      applications: ["Shopping Malls", "Commercial Complexes", "Hospitality Industry", "Luxury Buildings"],
-      gradient: "from-orange-500 via-red-500 to-orange-600",
-      bgGradient: "from-orange-50 to-red-50",
-    },
-    {
-      icon: Building2,
-      title: "Passenger Lifts",
-      slug: "passenger-lifts",
-      description: "Designed for carrying people with electric motor power. Features comfort, elegance, speed, safety, and customizable features for various building types.",
-      features: [
-        "Microprocessor controlled",
-        "Smooth and comfortable travel",
-        "Automatic doors",
-        "Multiple capacity options",
-      ],
-      applications: ["Office Buildings", "Residential Complexes", "Commercial Spaces"],
-      gradient: "from-indigo-500 via-blue-500 to-indigo-600",
-      bgGradient: "from-indigo-50 to-blue-50",
-    },
-    {
-      icon: Factory,
-      title: "Industrial / Goods Lift",
-      slug: "industrial-goods-lift",
-      description: "Heavy-duty lifts designed for transporting industrial goods and materials between floor levels. Built with robust construction to handle demanding industrial applications.",
-      features: [
-        "Heavy-duty construction",
-        "Large capacity options (500-4000 KG)",
-        "Robust steel frame",
-        "Industrial-grade safety",
-      ],
-      applications: ["Factories", "Warehouses", "Distribution Centers", "Industrial Facilities"],
-      gradient: "from-gray-500 via-slate-500 to-gray-600",
-      bgGradient: "from-gray-50 to-slate-50",
-    },
-    {
-      icon: Stethoscope,
-      title: "Hospital / Stretcher Lifts",
-      slug: "hospital-stretcher-lifts",
-      description: "Designed specifically for hospitals with emphasis on reliability, safety, hygiene, and easy-to-clean materials. Wide cabins accommodate stretchers and medical equipment.",
-      features: [
-        "Hygienic interiors",
-        "Precise leveling",
-        "Robust performance",
-        "Easy-to-clean materials",
-      ],
-      applications: ["Hospitals", "Medical Facilities", "Clinics", "Healthcare Centers"],
-      gradient: "from-teal-500 via-cyan-500 to-teal-600",
-      bgGradient: "from-teal-50 to-cyan-50",
-    },
-  ];
+  const productTypes = defaultProductTypes;
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -127,7 +21,7 @@ export default function ProductTypes() {
           <Reveal variant="fade-up">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/20 px-5 py-2.5 text-sm font-semibold text-white backdrop-blur-md">
               <Package className="h-4 w-4" />
-              Product Types
+              Elevator Types
             </div>
             <h1 className="mb-6 text-5xl font-bold leading-tight text-white md:text-6xl lg:text-7xl">
               Complete Range of{" "}
@@ -150,7 +44,7 @@ export default function ProductTypes() {
         </div>
       </section>
 
-      {/* Product Types Grid */}
+      {/* Elevator Types Grid */}
       <section className="section-padding bg-gradient-to-b from-background via-muted/30 to-background">
         <div className="container mx-auto px-4">
           <Reveal className="mb-16 text-center" variant="fade-up">
@@ -174,7 +68,7 @@ export default function ProductTypes() {
                     <Card className="group relative h-full overflow-hidden border-2 border-border/50 bg-gradient-to-br from-background to-muted/20 transition-all duration-500 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2 cursor-pointer">
                       <div className="relative aspect-video w-full overflow-hidden">
                         <img
-                          src={typeof heroElevatorImg === 'string' ? heroElevatorImg : heroElevatorImg.src}
+                          src={product.image || "/placeholder.svg"}
                           alt={product.title}
                           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-125"
                         />

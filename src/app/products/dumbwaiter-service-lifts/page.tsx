@@ -6,9 +6,12 @@ import { Package, ArrowRight, ArrowLeft, CheckCircle2, Utensils, ShoppingBag, Bo
 import Reveal from "@/components/Reveal";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import heroElevatorImg from "@/assets/hero-elevator.jpg";
 
 export default function DumbwaiterServiceLifts() {
+  const images = [
+    "/images/products/dumbwaiter_1.png",
+    "/images/products/dumbwaiter_2.png",
+  ];
   const features = [
     "Stainless steel construction for heat and moisture resistance",
     "Custom design options",
@@ -68,9 +71,13 @@ export default function DumbwaiterServiceLifts() {
         <div className="container mx-auto px-4">
           <div className="grid gap-8 lg:grid-cols-2">
             <Reveal variant="fade-up">
-              <div className="relative aspect-video w-full overflow-hidden rounded-2xl">
-                <img src={typeof heroElevatorImg === 'string' ? heroElevatorImg : heroElevatorImg.src} alt="Dumbwaiter Service Lift" className="h-full w-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="space-y-4">
+                {images.map((imageSrc, index) => (
+                  <div key={index} className="relative aspect-video w-full overflow-hidden rounded-2xl">
+                    <img src={imageSrc} alt={`Dumbwaiter Service Lift ${index + 1}`} className="h-full w-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  </div>
+                ))}
               </div>
             </Reveal>
             <Reveal variant="fade-up" delayMs={100}>

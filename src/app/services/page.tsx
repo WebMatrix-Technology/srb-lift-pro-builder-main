@@ -10,94 +10,25 @@ import maintenanceImg from "@/assets/service-maintenance.jpg";
 import repairImg from "@/assets/service-repair.jpg";
 import consultancyImg from "@/assets/service-consultancy.jpg";
 import Reveal from "@/components/Reveal";
+import { defaultServices } from "@/lib/data";
 
 export default function Services() {
-  const services = [
-    {
-      title: "Lift Installation",
-      image: installationImg,
-      description:
-        "Complete end-to-end lift installation services for new buildings and renovations. Our expert team handles everything from initial consultation and design to installation and commissioning.",
-      benefits: [
-        "Custom design solutions for your building",
-        "Latest technology and safety features",
-        "Compliance with all safety regulations",
-        "Professional installation by certified technicians",
-        "Post-installation support and warranty",
-        "Minimal disruption to building operations",
-      ],
-    },
-    {
-      title: "Lift Modernisation",
-      image: modernizationImg,
-      description:
-        "Upgrade your existing elevator systems with cutting-edge technology to improve performance, safety, and energy efficiency. Extend the life of your lifts with our comprehensive modernisation solutions.",
-      benefits: [
-        "Enhanced safety with modern control systems",
-        "Improved energy efficiency",
-        "Better ride quality and comfort",
-        "Updated aesthetics and cabin design",
-        "Reduced maintenance costs",
-        "Increased property value",
-      ],
-    },
-    {
-      title: "Lift Maintenance",
-      image: maintenanceImg,
-      description:
-        "Regular preventive maintenance to ensure your elevators operate smoothly and safely. Our comprehensive maintenance programs minimize downtime and extend equipment life.",
-      benefits: [
-        "Scheduled preventive maintenance",
-        "Thorough safety inspections",
-        "Component lubrication and adjustment",
-        "Early problem detection",
-        "Detailed maintenance reports",
-        "Extended equipment lifespan",
-      ],
-    },
-    {
-      title: "Lift Repair",
-      image: repairImg,
-      description:
-        "Fast and reliable repair services for all types of elevator issues. Our experienced technicians are available 24/7 to handle emergency breakdowns and ensure minimal downtime.",
-      benefits: [
-        "24/7 emergency repair service",
-        "Rapid response times",
-        "Skilled diagnostic capabilities",
-        "Genuine spare parts",
-        "Comprehensive troubleshooting",
-        "Minimal downtime guarantee",
-      ],
-    },
-    {
-      title: "Annual Maintenance Contracts (AMC)",
-      image: maintenanceImg,
-      description:
-        "Comprehensive AMC packages tailored to your needs. Enjoy peace of mind with regular maintenance, priority support, and cost-effective service plans.",
-      benefits: [
-        "Regular scheduled maintenance visits",
-        "Priority breakdown support",
-        "Discounted repair costs",
-        "Comprehensive service reports",
-        "Budget-friendly annual plans",
-        "Predictable maintenance costs",
-      ],
-    },
-    {
-      title: "Elevator Consultancy",
-      image: consultancyImg,
-      description:
-        "Expert consultancy services for elevator planning, selection, and project management. We help you make informed decisions for your vertical transportation needs.",
-      benefits: [
-        "Technical expertise and guidance",
-        "Project planning and management",
-        "Equipment selection assistance",
-        "Compliance and safety consulting",
-        "Cost optimization strategies",
-        "Long-term maintenance planning",
-      ],
-    },
-  ];
+  // Map image paths to actual imported images
+  const imageMap: Record<string, typeof installationImg> = {
+    "/assets/service-installation.jpg": installationImg,
+    "/assets/service-modernization.jpg": modernizationImg,
+    "/assets/service-maintenance.jpg": maintenanceImg,
+    "/assets/service-repair.jpg": repairImg,
+    "/assets/service-consultancy.jpg": consultancyImg,
+  };
+
+  // Map services with actual image imports
+  const services = defaultServices.map((service) => ({
+    ...service,
+    image: typeof service.image === "string" && imageMap[service.image]
+      ? imageMap[service.image]
+      : service.image,
+  }));
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -286,7 +217,7 @@ export default function Services() {
             <Reveal variant="fade-up" delayMs={100}>
               <Card className="group border-2 transition-all duration-300 hover:border-primary/50 hover:shadow-xl">
                 <CardContent className="p-6 text-center">
-                  <h3 className="mb-2 font-bold">Product Types</h3>
+                  <h3 className="mb-2 font-bold">Elevator Types</h3>
                   <p className="mb-4 text-sm text-muted-foreground">Explore different lift types</p>
                   <Button variant="outline" className="w-full" asChild>
                     <Link href="/product-types">View Types</Link>

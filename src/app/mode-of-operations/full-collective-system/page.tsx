@@ -6,7 +6,6 @@ import { Settings, ArrowRight, ArrowLeft, CheckCircle2, Building2, Layers } from
 import Reveal from "@/components/Reveal";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import heroElevatorImg from "@/assets/hero-elevator.jpg";
 
 export default function FullCollectiveSystem() {
   const features = [
@@ -65,15 +64,8 @@ export default function FullCollectiveSystem() {
 
       <section className="section-padding bg-gradient-to-b from-background via-muted/30 to-background">
         <div className="container mx-auto px-4">
-          <div className="grid gap-8 lg:grid-cols-2">
-            <Reveal variant="fade-up">
-              <div className="relative aspect-video w-full overflow-hidden rounded-2xl">
-                <img src={typeof heroElevatorImg === 'string' ? heroElevatorImg : heroElevatorImg.src} alt="Full Collective System" className="h-full w-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              </div>
-            </Reveal>
-            <Reveal variant="fade-up" delayMs={100}>
-              <Card className="h-full border-2 border-primary/20 bg-gradient-to-br from-background to-muted/20 shadow-xl">
+          <Reveal variant="fade-up">
+            <Card className="mx-auto max-w-4xl border-2 border-primary/20 bg-gradient-to-br from-background to-muted/20 shadow-xl">
                 <CardHeader>
                   <CardTitle className="text-3xl font-bold">Overview</CardTitle>
                 </CardHeader>
@@ -90,9 +82,8 @@ export default function FullCollectiveSystem() {
                     ))}
                   </div>
                 </CardContent>
-              </Card>
-            </Reveal>
-          </div>
+            </Card>
+          </Reveal>
         </div>
       </section>
 

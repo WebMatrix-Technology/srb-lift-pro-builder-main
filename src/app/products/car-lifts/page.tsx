@@ -6,9 +6,12 @@ import { Car, ArrowRight, ArrowLeft, CheckCircle2, Home, Building2, ParkingCircl
 import Reveal from "@/components/Reveal";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import heroElevatorImg from "@/assets/hero-elevator.jpg";
 
 export default function CarLifts() {
+  const images = [
+    "/images/products/car_lift_1.png",
+    "/images/products/car_lift_2.png",
+  ];
   const features = [
     "Cost-effective space-saving solution",
     "Design flexibility",
@@ -67,9 +70,13 @@ export default function CarLifts() {
         <div className="container mx-auto px-4">
           <div className="grid gap-8 lg:grid-cols-2">
             <Reveal variant="fade-up">
-              <div className="relative aspect-video w-full overflow-hidden rounded-2xl">
-                <img src={typeof heroElevatorImg === 'string' ? heroElevatorImg : heroElevatorImg.src} alt="Car Lift" className="h-full w-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="space-y-4">
+                {images.map((imageSrc, index) => (
+                  <div key={index} className="relative aspect-video w-full overflow-hidden rounded-2xl">
+                    <img src={imageSrc} alt={`Car Lift ${index + 1}`} className="h-full w-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  </div>
+                ))}
               </div>
             </Reveal>
             <Reveal variant="fade-up" delayMs={100}>

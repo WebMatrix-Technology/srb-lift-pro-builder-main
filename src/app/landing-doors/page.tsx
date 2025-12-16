@@ -1,106 +1,15 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { DoorOpen, ArrowRight, ArrowLeft, CheckCircle2, Shield, Sparkles } from "lucide-react";
+import { ArrowRight, ArrowLeft, CheckCircle2, Sparkles, DoorOpen } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import heroElevatorImg from "@/assets/hero-elevator.jpg";
+import { defaultDoorTypes } from "@/lib/data";
 
 export default function LandingDoors() {
-  const allDoorTypes = [
-    {
-      name: "SS Automatic",
-      slug: "ss-automatic",
-      type: "Automatic",
-      description: "Stainless steel automatic doors with sleek finish and smooth operation. Perfect for modern buildings requiring premium aesthetics.",
-      features: ["Premium stainless steel", "Smooth automatic operation", "Corrosion resistant", "Easy maintenance"],
-      icon: Shield,
-      gradient: "from-slate-500 to-slate-600",
-      bgGradient: "from-slate-50 to-slate-100",
-    },
-    {
-      name: "MS Automatic",
-      slug: "ms-automatic",
-      type: "Automatic",
-      description: "Mild steel automatic doors with durable construction. Cost-effective solution with reliable performance for various applications.",
-      features: ["Durable construction", "Cost-effective", "Reliable performance", "Multiple finish options"],
-      icon: DoorOpen,
-      gradient: "from-gray-500 to-gray-600",
-      bgGradient: "from-gray-50 to-gray-100",
-    },
-    {
-      name: "Glass Automatic",
-      slug: "glass-automatic",
-      type: "Automatic",
-      description: "Double-panel glass doors with thin metal frames for modern aesthetics. High visibility and elegant design for contemporary spaces with automatic operation.",
-      features: ["Modern appearance", "High visibility", "Elegant design", "Automatic operation"],
-      icon: Sparkles,
-      gradient: "from-cyan-500 to-blue-500",
-      bgGradient: "from-cyan-50 to-blue-50",
-    },
-    {
-      name: "SS Hairline Autodoor",
-      slug: "ss-hairline-autodoor",
-      type: "Automatic",
-      description: "Plain brushed stainless steel double door with sleek finish and automatic operation. Premium appearance with smooth functionality.",
-      features: ["Premium finish", "Corrosion resistant", "Easy to clean", "Automatic operation"],
-      icon: Shield,
-      gradient: "from-zinc-500 to-gray-500",
-      bgGradient: "from-zinc-50 to-gray-50",
-    },
-    {
-      name: "Telescopic / Side Opening Auto",
-      slug: "telescopic-side-opening-auto",
-      type: "Automatic",
-      description: "Advanced telescopic door system with side opening mechanism. Space-efficient solution ideal for narrow shafts and modern installations.",
-      features: ["Space efficient", "Advanced mechanism", "Smooth operation", "Modern technology"],
-      icon: Shield,
-      gradient: "from-indigo-500 to-purple-500",
-      bgGradient: "from-indigo-50 to-purple-50",
-    },
-    {
-      name: "Swing Doors",
-      slug: "swing-doors",
-      type: "Manual",
-      description: "Single-panel door with rectangular window, perfect for traditional settings. Classic design with easy operation and maintenance.",
-      features: ["Classic design", "Easy maintenance", "Cost-effective", "Versatile application"],
-      icon: DoorOpen,
-      gradient: "from-amber-500 to-orange-500",
-      bgGradient: "from-amber-50 to-orange-50",
-    },
-    {
-      name: "Collapsible Gates",
-      slug: "collapsible-gates",
-      type: "Manual",
-      description: "Gate-like door with diamond lattice pattern, ideal for industrial applications. Robust design with high visibility and security.",
-      features: ["Robust design", "High visibility", "Industrial grade", "Secure operation"],
-      icon: DoorOpen,
-      gradient: "from-teal-500 to-green-500",
-      bgGradient: "from-teal-50 to-green-50",
-    },
-    {
-      name: "MS Imperforate Door",
-      slug: "ms-imperforate-door",
-      type: "Manual",
-      description: "Metallic accordion-style door with smooth operation and modern design. Durable construction for various applications.",
-      features: ["Durable construction", "Smooth operation", "Space efficient", "Modern design"],
-      icon: DoorOpen,
-      gradient: "from-blue-500 to-indigo-500",
-      bgGradient: "from-blue-50 to-indigo-50",
-    },
-    {
-      name: "MS Powder Coated Door",
-      slug: "ms-powder-coated-door",
-      type: "Manual",
-      description: "Light beige/cream colored double door with rectangular window, set within darker frame. Custom colors available for versatile design.",
-      features: ["Custom colors", "Weather resistant", "Versatile design", "Easy maintenance"],
-      icon: DoorOpen,
-      gradient: "from-yellow-500 to-amber-500",
-      bgGradient: "from-yellow-50 to-amber-50",
-    },
-  ];
+  const allDoorTypes = defaultDoorTypes;
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -154,14 +63,14 @@ export default function LandingDoors() {
                 <Reveal key={index} variant="fade-up" delayMs={index * 100}>
                   <Link href={`/landing-doors/${door.slug}`}>
                     <Card className="group relative h-full overflow-hidden border-2 border-border/50 bg-gradient-to-br from-background to-muted/20 transition-all duration-500 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2 cursor-pointer">
-                    <div className="relative aspect-video w-full overflow-hidden">
+                    <div className="relative aspect-video w-full overflow-hidden bg-muted/20">
                       <img
-                        src={typeof heroElevatorImg === 'string' ? heroElevatorImg : heroElevatorImg.src}
+                        src={door.image || "/placeholder.svg"}
                         alt={door.name}
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-125"
+                        className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-110"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                      <div className={`absolute inset-0 bg-gradient-to-br ${door.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-20`} />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+                      <div className={`absolute inset-0 bg-gradient-to-br ${door.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-20 pointer-events-none`} />
                       <div className="absolute top-4 left-4 flex items-center gap-2">
                         <div className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${door.gradient} shadow-xl shadow-primary/20 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-2xl z-10`}>
                           <Icon className="h-8 w-8 text-white" />

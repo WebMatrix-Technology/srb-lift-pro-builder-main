@@ -6,6 +6,7 @@ import Reveal from "@/components/Reveal";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import heroElevatorImg from "@/assets/hero-elevator.jpg";
+import { defaultDoorTypes, defaultProductTypes } from "@/lib/data";
 
 export default function Products() {
 
@@ -45,24 +46,18 @@ export default function Products() {
           </Reveal>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {[
-              { name: "Passenger Lifts", slug: "passenger-lifts", icon: Building2, gradient: "from-indigo-500 via-blue-500 to-indigo-600", description: "Comfortable and efficient passenger transportation" },
-              { name: "Industrial / Goods Lift", slug: "industrial-goods-lift", icon: Building2, gradient: "from-gray-500 via-slate-500 to-gray-600", description: "Heavy-duty lifts for industrial applications" },
-              { name: "Hospital / Stretcher Lifts", slug: "hospital-stretcher-lifts", icon: Building2, gradient: "from-teal-500 via-cyan-500 to-teal-600", description: "Designed for medical facilities" },
-              { name: "Dumbwaiter / Service Lifts", slug: "dumbwaiter-service-lifts", icon: Building2, gradient: "from-blue-500 via-cyan-500 to-blue-600", description: "Compact service and delivery solutions" },
-              { name: "Capsule Lifts", slug: "capsule-lifts", icon: Building2, gradient: "from-orange-500 via-red-500 to-orange-600", description: "Architectural highlights with panoramic views" },
-              { name: "Car Lifts", slug: "car-lifts", icon: Building2, gradient: "from-purple-500 via-pink-500 to-purple-600", description: "Automotive parking solutions" },
-              { name: "Hydraulic Lifts", slug: "hydraulic-lifts", icon: Building2, gradient: "from-green-500 via-emerald-500 to-green-600", description: "Smooth operation with no pit requirements" }
-            ].map((type, index) => {
+            {defaultProductTypes.map((type, index) => {
               const Icon = type.icon;
+              // Use product-specific image if available, otherwise fallback to heroElevatorImg
+              const imageSrc = type.image || (typeof heroElevatorImg === 'string' ? heroElevatorImg : heroElevatorImg.src);
               return (
                 <Reveal key={index} variant="fade-up" delayMs={index * 100}>
                   <Link href={`/products/${type.slug}`}>
                     <Card className="group relative h-full overflow-hidden border-2 border-border/50 bg-gradient-to-br from-background to-muted/20 transition-all duration-500 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2">
                       <div className="relative aspect-video w-full overflow-hidden">
                         <img
-                          src={typeof heroElevatorImg === 'string' ? heroElevatorImg : heroElevatorImg.src}
-                          alt={type.name}
+                          src={imageSrc}
+                          alt={type.title}
                           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-125"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -72,7 +67,7 @@ export default function Products() {
                         <div className={`mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${type.gradient} shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:rotate-3`}>
                           <Icon className="h-7 w-7 text-white" />
                         </div>
-                        <h3 className="mb-2 text-xl font-bold leading-tight">{type.name}</h3>
+                        <h3 className="mb-2 text-xl font-bold leading-tight">{type.title}</h3>
                         <p className="mb-4 text-sm text-muted-foreground">{type.description}</p>
                         <div className="flex items-center gap-2 text-sm font-semibold text-primary group-hover:gap-3 transition-all duration-300">
                           Learn More
@@ -104,30 +99,22 @@ export default function Products() {
           </Reveal>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {[
-              { name: "SS Automatic", slug: "ss-automatic", icon: DoorOpen, gradient: "from-slate-500 via-slate-600 to-slate-700", description: "Premium stainless steel automatic doors" },
-              { name: "MS Automatic", slug: "ms-automatic", icon: DoorOpen, gradient: "from-gray-500 via-gray-600 to-gray-700", description: "Cost-effective mild steel automatic doors" },
-              { name: "Glass Automatic", slug: "glass-automatic", icon: DoorOpen, gradient: "from-cyan-500 via-blue-500 to-cyan-600", description: "Modern glass doors with high visibility" },
-              { name: "SS Hairline Autodoor", slug: "ss-hairline-autodoor", icon: DoorOpen, gradient: "from-zinc-500 via-gray-500 to-zinc-600", description: "Premium brushed stainless steel finish" },
-              { name: "Telescopic / Side Opening Auto", slug: "telescopic-side-opening-auto", icon: DoorOpen, gradient: "from-indigo-500 via-purple-500 to-indigo-600", description: "Space-efficient telescopic door system" },
-              { name: "Swing Doors", slug: "swing-doors", icon: DoorOpen, gradient: "from-amber-500 via-orange-500 to-amber-600", description: "Classic traditional swing door design" },
-              { name: "Collapsible Gates", slug: "collapsible-gates", icon: DoorOpen, gradient: "from-teal-500 via-green-500 to-teal-600", description: "Industrial grade collapsible gates" },
-              { name: "MS Imperforate Door", slug: "ms-imperforate-door", icon: DoorOpen, gradient: "from-blue-500 via-indigo-500 to-blue-600", description: "Modern accordion-style metallic door" },
-              { name: "MS Powder Coated Door", slug: "ms-powder-coated-door", icon: DoorOpen, gradient: "from-yellow-500 via-amber-500 to-yellow-600", description: "Custom color powder coated doors" }
-            ].map((door, index) => {
+            {defaultDoorTypes.map((door, index) => {
               const Icon = door.icon;
+              // Use door-specific image if available, otherwise fallback to heroElevatorImg
+              const imageSrc = door.image || (typeof heroElevatorImg === 'string' ? heroElevatorImg : heroElevatorImg.src);
               return (
                 <Reveal key={index} variant="fade-up" delayMs={index * 100}>
                   <Link href={`/landing-doors/${door.slug}`}>
                     <Card className="group relative h-full overflow-hidden border-2 border-border/50 bg-gradient-to-br from-background to-muted/20 transition-all duration-500 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2">
-                      <div className="relative aspect-video w-full overflow-hidden">
+                      <div className="relative aspect-video w-full overflow-hidden bg-muted/20">
                         <img
-                          src={typeof heroElevatorImg === 'string' ? heroElevatorImg : heroElevatorImg.src}
+                          src={imageSrc}
                           alt={door.name}
-                          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-125"
+                          className="h-full w-full object-contain transition-transform duration-700 group-hover:scale-110"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                        <div className={`absolute inset-0 bg-gradient-to-br ${door.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-20`} />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+                        <div className={`absolute inset-0 bg-gradient-to-br ${door.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-20 pointer-events-none`} />
                       </div>
                       <CardContent className="p-6">
                         <div className={`mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${door.gradient} shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:rotate-3`}>
@@ -177,15 +164,6 @@ export default function Products() {
                 <Reveal key={index} variant="fade-up" delayMs={index * 100}>
                   <Link href={`/mode-of-operations/${mode.slug}`}>
                     <Card className="group relative h-full overflow-hidden border-2 border-border/50 bg-gradient-to-br from-background to-muted/20 transition-all duration-500 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2 cursor-pointer">
-                    <div className="relative aspect-video w-full overflow-hidden">
-                      <img
-                        src={typeof heroElevatorImg === 'string' ? heroElevatorImg : heroElevatorImg.src}
-                        alt={mode.name}
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-125"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                      <div className={`absolute inset-0 bg-gradient-to-br ${mode.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-20`} />
-                    </div>
                     <CardContent className="p-6">
                       <div className={`mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${mode.gradient} shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:rotate-3`}>
                         <Icon className="h-7 w-7 text-white" />

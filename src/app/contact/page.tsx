@@ -12,6 +12,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { loadSettings } from "@/lib/settings";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import Reveal from "@/components/Reveal";
+import { getContactMethods } from "@/lib/data";
 
 export default function Contact() {
   const settings = loadSettings();
@@ -173,29 +174,11 @@ export default function Contact() {
     }
   };
 
-  const contactMethods = [
-    {
-      icon: Phone,
-      title: "Phone",
-      content: settings.phones,
-      link: (val: string) => `tel:${val}`,
-      type: "phone" as const,
-    },
-    {
-      icon: Mail,
-      title: "Email",
-      content: [settings.email],
-      link: (val: string) => `mailto:${val}`,
-      type: "email" as const,
-    },
-    {
-      icon: MapPin,
-      title: "Address",
-      content: [settings.address],
-      link: () => "#",
-      type: "address" as const,
-    },
-  ];
+  const contactMethods = getContactMethods({
+    phones: settings.phones,
+    email: settings.email,
+    address: settings.address,
+  });
 
   return (
     <div className="flex min-h-screen flex-col">

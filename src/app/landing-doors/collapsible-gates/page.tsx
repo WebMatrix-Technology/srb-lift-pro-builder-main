@@ -6,9 +6,9 @@ import { DoorOpen, ArrowRight, ArrowLeft, CheckCircle2, Factory, Shield } from "
 import Reveal from "@/components/Reveal";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import heroElevatorImg from "@/assets/hero-elevator.jpg";
 
 export default function CollapsibleGates() {
+  const image = "/images/doors/ms_collapsible_door.png";
   const features = [
     "Robust industrial design",
     "High visibility",
@@ -67,9 +67,9 @@ export default function CollapsibleGates() {
         <div className="container mx-auto px-4">
           <div className="grid gap-8 lg:grid-cols-2">
             <Reveal variant="fade-up">
-              <div className="relative aspect-video w-full overflow-hidden rounded-2xl">
-                <img src={typeof heroElevatorImg === 'string' ? heroElevatorImg : heroElevatorImg.src} alt="Collapsible Gate" className="h-full w-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-muted/20">
+                <img src={image} alt="Collapsible Gate" className="h-full w-full object-contain" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
               </div>
             </Reveal>
             <Reveal variant="fade-up" delayMs={100}>

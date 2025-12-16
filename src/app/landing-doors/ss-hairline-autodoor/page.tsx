@@ -6,9 +6,9 @@ import { Shield, ArrowRight, ArrowLeft, CheckCircle2, Building2, Sparkles } from
 import Reveal from "@/components/Reveal";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import heroElevatorImg from "@/assets/hero-elevator.jpg";
 
 export default function SSHairlineAutodoor() {
+  const image = "/images/doors/ss_autodoor.png";
   const features = [
     "Premium brushed finish",
     "Corrosion resistant",
@@ -67,9 +67,9 @@ export default function SSHairlineAutodoor() {
         <div className="container mx-auto px-4">
           <div className="grid gap-8 lg:grid-cols-2">
             <Reveal variant="fade-up">
-              <div className="relative aspect-video w-full overflow-hidden rounded-2xl">
-                <img src={typeof heroElevatorImg === 'string' ? heroElevatorImg : heroElevatorImg.src} alt="SS Hairline Autodoor" className="h-full w-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-muted/20">
+                <img src={image} alt="SS Hairline Autodoor" className="h-full w-full object-contain" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
               </div>
             </Reveal>
             <Reveal variant="fade-up" delayMs={100}>

@@ -9,6 +9,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { toast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { loadSettings, saveSettings, defaultSettings, SiteSettings } from "@/lib/settings";
+import { defaultAdminSidebarItems } from "@/lib/data";
 import { 
   LayoutDashboard, 
   Settings, 
@@ -121,11 +122,10 @@ export default function Admin() {
     }
   }, [authed, activeSection]);
 
-  const sidebarItems = [
-    { id: "dashboard" as AdminSection, label: "Dashboard", icon: LayoutDashboard },
-    { id: "settings" as AdminSection, label: "Site Settings", icon: Settings },
-    { id: "messages" as AdminSection, label: "Messages", icon: MessageSquare },
-  ];
+  const sidebarItems = defaultAdminSidebarItems.map((item) => ({
+    ...item,
+    id: item.id as AdminSection,
+  }));
 
   if (!authed) {
     return (

@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Phone, ChevronDown, Building2 } from "lucide-react";
+import { Menu, X, Phone, ChevronDown } from "lucide-react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -12,8 +13,9 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { loadSettings, defaultSettings, SiteSettings } from "@/lib/settings";
+import { loadSettings, defaultSettings, SiteSettings, getAllPhoneNumbers } from "@/lib/settings";
 import { cn } from "@/lib/utils";
+import { defaultNavigationLinks, defaultProductMenuItems } from "@/lib/data";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,21 +34,9 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navigation = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Services", href: "/services" },
-    { name: "Projects", href: "/projects" },
-    { name: "Contact", href: "/contact" },
-  ];
-
-  const productMenuItems = [
-    { name: "Products", href: "/products", description: "Browse all products" },
-    { name: "Product Types", href: "/product-types", description: "Explore categories" },
-    { name: "Landing Doors", href: "/landing-doors", description: "Door solutions" },
-    { name: "Technical", href: "/technical", description: "Technical details" },
-    { name: "Specifications", href: "/specifications", description: "Full specifications" },
-  ];
+  const navigation = defaultNavigationLinks;
+  const productMenuItems = defaultProductMenuItems;
+  const primaryPhone = getAllPhoneNumbers(settings.phones)[0] || settings.phones[0] || "";
 
   const isActive = (href: string) => pathname === href;
   const isProductActive = () => productMenuItems.some(item => pathname === item.href);
@@ -64,17 +54,31 @@ const Header = () => {
         {/* Logo Section */}
         <Link 
           href="/" 
-          className="flex items-center space-x-3 group relative"
+          className="flex items-center gap-3 group relative"
           onClick={() => setIsOpen(false)}
         >
-          <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-hover shadow-lg shadow-primary/25 group-hover:shadow-xl group-hover:shadow-primary/30 transition-all duration-300 group-hover:scale-105">
-            <Building2 className="h-5 w-5 text-white" />
+          <div className="relative h-12 w-auto transition-all duration-300 group-hover:scale-105 group-hover:brightness-110">
+            <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-primary/5 to-primary-hover/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm" />
+            <Image 
+              src="/logo.png?v=1" 
+              alt={settings.companyName}
+              width={48}
+              height={48}
+              className="h-12 w-auto object-contain relative z-10 drop-shadow-lg"
+              priority
+              unoptimized
+            />
           </div>
-          <div className="relative">
-            <span className="text-2xl font-bold bg-gradient-to-r from-primary via-primary-hover to-primary bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300 block">
-              {settings.companyName}
-            </span>
-            <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-primary via-primary-hover to-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+          <div className="relative h-9 w-auto transition-all duration-300 group-hover:scale-105">
+            <Image 
+              src="/logo_title.png?v=1" 
+              alt={settings.companyName}
+              width={160}
+              height={36}
+              className="h-9 w-auto object-contain relative z-10 drop-shadow-md"
+              priority
+              unoptimized
+            />
           </div>
         </Link>
 
@@ -203,7 +207,7 @@ const Header = () => {
               size="default"
               className="bg-gradient-to-r from-primary to-primary-hover hover:from-primary-hover hover:to-primary text-white shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:scale-105 transition-all duration-300 font-semibold"
             >
-              <a href={`tel:${settings.phones[0]}`} className="flex items-center gap-2">
+              <a href={`tel:${primaryPhone}`} className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
                 <span>Call Now</span>
               </a>
@@ -337,7 +341,7 @@ const Header = () => {
               className="w-full bg-gradient-to-r from-primary to-primary-hover hover:from-primary-hover hover:to-primary text-white shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 font-semibold"
               onClick={() => setIsOpen(false)}
             >
-              <a href={`tel:${settings.phones[0]}`} className="flex items-center justify-center gap-2">
+              <a href={`tel:${primaryPhone}`} className="flex items-center justify-center gap-2">
                 <Phone className="h-5 w-5" />
                 <span>Call Now</span>
               </a>

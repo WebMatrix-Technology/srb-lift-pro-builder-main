@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, CheckCircle2, Shield, Clock, Users, Wrench, Building2, Cog, Star, TrendingUp } from "lucide-react";
+import { ArrowRight, Star } from "lucide-react";
 import Link from "next/link";
 import heroImage from "@/assets/hero-elevator.jpg";
 import installationImg from "@/assets/service-installation.jpg";
@@ -12,86 +12,27 @@ import Reveal from "@/components/Reveal";
 import ElevatorScene from "@/components/ElevatorScene";
 import HeroDoors from "@/components/HeroDoors";
 import CountUp from "@/components/CountUp";
+import { defaultServices, defaultFeatures, defaultTestimonials, defaultStats } from "@/lib/data";
 
 export default function Home() {
-  const services = [
-    {
-      icon: Building2,
-      title: "Lift Installation",
-      description: "Professional installation of modern elevator systems for all building types with cutting-edge technology.",
-      image: installationImg,
-      color: "from-blue-500 to-blue-600",
-    },
-    {
-      icon: Cog,
-      title: "Lift Modernisation",
-      description: "Upgrade your existing lifts with the latest technology, safety features, and energy-efficient systems.",
-      image: modernizationImg,
-      color: "from-purple-500 to-purple-600",
-    },
-    {
-      icon: Wrench,
-      title: "Maintenance & Repair",
-      description: "Comprehensive maintenance and rapid repair services to keep your lifts running smoothly 24/7.",
-      image: maintenanceImg,
-      color: "from-green-500 to-green-600",
-    },
-  ];
+  // Map image paths to actual imported images
+  const imageMap: Record<string, typeof installationImg> = {
+    "/assets/service-installation.jpg": installationImg,
+    "/assets/service-modernization.jpg": modernizationImg,
+    "/assets/service-maintenance.jpg": maintenanceImg,
+  };
 
-  const features = [
-    {
-      icon: Shield,
-      title: "Safety First",
-      description: "Industry-leading safety standards and certifications ensuring maximum protection",
-      gradient: "from-blue-500 to-cyan-500",
-    },
-    {
-      icon: Clock,
-      title: "24/7 Support",
-      description: "Round-the-clock emergency support and rapid response for all your needs",
-      gradient: "from-purple-500 to-pink-500",
-    },
-    {
-      icon: Users,
-      title: "Expert Team",
-      description: "Highly trained and certified technicians with years of experience",
-      gradient: "from-green-500 to-emerald-500",
-    },
-    {
-      icon: CheckCircle2,
-      title: "Quality Assured",
-      description: "Premium components and proven reliability in every installation",
-      gradient: "from-orange-500 to-red-500",
-    },
-  ];
+  // Map services with actual image imports
+  const services = defaultServices.slice(0, 3).map((service) => ({
+    ...service,
+    image: typeof service.image === "string" && imageMap[service.image]
+      ? imageMap[service.image]
+      : service.image,
+  }));
 
-  const testimonials = [
-    {
-      name: "Rajesh Kumar",
-      company: "Commercial Tower",
-      text: "Excellent service! SRB ELEVATOR installed our building's elevator system efficiently and professionally. Highly recommended!",
-      rating: 5,
-    },
-    {
-      name: "Priya Sharma",
-      company: "Residential Complex",
-      text: "Their AMC service has been outstanding. Quick response times and reliable maintenance. Very satisfied with their work.",
-      rating: 5,
-    },
-    {
-      name: "Amit Patel",
-      company: "Office Building",
-      text: "Modernisation of our old lift was seamless. The team was professional and the results exceeded our expectations!",
-      rating: 5,
-    },
-  ];
-
-  const stats = [
-    { label: "Years Experience", value: 15, suffix: "+", icon: TrendingUp },
-    { label: "Projects Completed", value: 500, suffix: "+", icon: Building2 },
-    { label: "Active AMC Clients", value: 300, suffix: "+", icon: Users },
-    { label: "Support Available", value: 24, suffix: "/7", icon: Clock },
-  ];
+  const features = defaultFeatures;
+  const testimonials = defaultTestimonials;
+  const stats = defaultStats;
 
   return (
     <div className="flex min-h-screen flex-col">

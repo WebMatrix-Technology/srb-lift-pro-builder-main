@@ -7,81 +7,16 @@ import Reveal from "@/components/Reveal";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 
+import {
+  defaultMRLBenefits,
+  defaultVFDBenefits,
+  defaultSafetyFeatures,
+} from "@/lib/data";
+
 export default function Technical() {
-  const mrlBenefits = [
-    "Latest Technology in The World",
-    "Smoothest Travel",
-    "Absolute Freedom in Building Designs",
-    "Substantial Saving on Electricity Cost",
-    "Save The Construction Cost",
-    "More Safe",
-  ];
-
-  const vfdBenefits = [
-    "Setting/altering any parameters at site",
-    "All input signals NO/NC selection can be set on site",
-    "Power on reset run to ground floor is not required",
-    "All inputs and outputs are user programmable",
-    "All parameters can be password protected",
-    "Providing under voltage, over voltage and earth protection for controller",
-  ];
-
-  const safetyFeatures = [
-    {
-      icon: Shield,
-      title: "Automate Rescue Device (ARD)",
-      description: "Advanced system for passenger rescue during power failure, ensuring safe evacuation without manual intervention.",
-      color: "from-blue-500 to-cyan-500",
-    },
-    {
-      icon: AlertTriangle,
-      title: "Infrared Full Length Door Sensors",
-      description: "Detect objects in the door's path, preventing accidents and ensuring safe operation.",
-      color: "from-orange-500 to-red-500",
-    },
-    {
-      icon: CheckCircle2,
-      title: "Door Interlocking",
-      description: "Prevents elevator movement when doors are open, ensuring maximum safety.",
-      color: "from-green-500 to-emerald-500",
-    },
-    {
-      icon: Shield,
-      title: "Over Speed Governor",
-      description: "Automatically activates if elevator exceeds safe speed limits.",
-      color: "from-purple-500 to-pink-500",
-    },
-    {
-      icon: AlertTriangle,
-      title: "Emergency Alarm",
-      description: "Allows passengers to alert in case of emergency situations.",
-      color: "from-red-500 to-orange-500",
-    },
-    {
-      icon: Settings,
-      title: "Emergency Stop Switch",
-      description: "Immediate stop capability for emergency situations.",
-      color: "from-indigo-500 to-blue-500",
-    },
-    {
-      icon: Shield,
-      title: "Fireman Switch",
-      description: "Special mode for fire service operations.",
-      color: "from-teal-500 to-cyan-500",
-    },
-    {
-      icon: CheckCircle2,
-      title: "DBG Mechanical Safety",
-      description: "Backup mechanical safety system for ultimate protection.",
-      color: "from-amber-500 to-yellow-500",
-    },
-    {
-      icon: AlertTriangle,
-      title: "Final Limit Switch",
-      description: "Prevents over-travel beyond safe limits.",
-      color: "from-rose-500 to-pink-500",
-    },
-  ];
+  const mrlBenefits = defaultMRLBenefits;
+  const vfdBenefits = defaultVFDBenefits;
+  const safetyFeatures = defaultSafetyFeatures;
 
   return (
     <div className="flex min-h-screen flex-col">

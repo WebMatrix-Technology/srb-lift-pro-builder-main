@@ -8,60 +8,25 @@ import maintenanceImg from "@/assets/service-maintenance.jpg";
 import modernizationImg from "@/assets/service-modernization.jpg";
 import Reveal from "@/components/Reveal";
 import Link from "next/link";
+import { defaultProjects, defaultProjectCategories } from "@/lib/data";
 
 export default function Projects() {
-  const projects = [
-    { 
-      title: "Corporate Tower A", 
-      location: "Downtown District", 
-      type: "Commercial Installation",
-      category: "Commercial",
-      image: installationImg,
-      year: "2023",
-    },
-    { 
-      title: "Residential Complex B", 
-      location: "Suburban Area", 
-      type: "Complete Modernisation",
-      category: "Residential",
-      image: modernizationImg,
-      year: "2023",
-    },
-    { 
-      title: "Shopping Mall C", 
-      location: "City Center", 
-      type: "Multiple Lift Installation",
-      category: "Commercial",
-      image: installationImg,
-      year: "2022",
-    },
-    { 
-      title: "Office Building D", 
-      location: "Business Park", 
-      type: "AMC & Maintenance",
-      category: "Commercial",
-      image: maintenanceImg,
-      year: "2024",
-    },
-    { 
-      title: "Hospital Complex E", 
-      location: "Medical District", 
-      type: "Hospital Lift Installation",
-      category: "Healthcare",
-      image: installationImg,
-      year: "2023",
-    },
-    { 
-      title: "Industrial Facility F", 
-      location: "Industrial Zone", 
-      type: "Goods Lift Installation",
-      category: "Industrial",
-      image: modernizationImg,
-      year: "2022",
-    },
-  ];
+  // Map image paths to actual imported images
+  const imageMap: Record<string, typeof installationImg> = {
+    "/assets/service-installation.jpg": installationImg,
+    "/assets/service-modernization.jpg": modernizationImg,
+    "/assets/service-maintenance.jpg": maintenanceImg,
+  };
 
-  const categories = ["All", "Commercial", "Residential", "Healthcare", "Industrial"];
+  // Map projects with actual image imports
+  const projects = defaultProjects.map((project) => ({
+    ...project,
+    image: typeof project.image === "string" && imageMap[project.image]
+      ? imageMap[project.image]
+      : project.image,
+  }));
+
+  const categories = defaultProjectCategories;
 
   return (
     <div className="flex min-h-screen flex-col">
